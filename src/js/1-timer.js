@@ -9,15 +9,17 @@ import "izitoast/dist/css/iziToast.min.css";
 
 const inputTime = document.querySelector("#datetime-picker");
 const btnStart = document.querySelector("button");
-const timerVeiw = document.querySelector(".value");
+const timerVeiw = document.querySelectorAll(".value");
 
 
 
-btnStart.addEventListener("click", handleClick);
+btnStart.addEventListener("click", startTimer);
 
 
 let userSelectedDate = null;
+let idTimer = null;
 btnStart.disabled = true; 
+
 const options = {
     enableTime: true,
     time_24hr: true,
@@ -30,9 +32,7 @@ const options = {
                 message: "Please choose a date in the future",
         });
        return btnStart.disabled = true; 
-        
         }
-        console.log(selectedDates[0]);
         btnStart.disabled = false; 
         userSelectedDate = selectedDates[0]; 
     }
@@ -41,24 +41,25 @@ const options = {
 const fp = flatpickr(inputTime, options);
 
 
-function handleClick(){
-    /*  const startTime = Date.now(); */
-    options.clickOpens = false;
+function startTimer(){
+    /* options.clickOpens = false; */
     inputTime.disabled = true;
-    fp.close();
+    /* fp.close(); */
     btnStart.disabled = true;
-    const idTimer = setInterval(() => {
+    idTimer = setInterval(() => {
        const currentTime = Date.now();
        const result = userSelectedDate - currentTime;
-      
-      
+        if (result <= 0){ 
+           inputTime.disabled = false;
+           clearInterval(idTimer); 
+           updateTimer({ days: "00", hours: "00", minutes: "00", seconds: "00" });  
+           return;  
+        }; 
        const ms = convertMs(result);
        updateTimer(ms);
 
     },1000);
 };
-
-
 
 function convertMs(ms) {
   const second = 1000;
@@ -70,8 +71,6 @@ function convertMs(ms) {
   const hours = addLeadingZero(Math.floor((ms % day) / hour));
   const minutes = addLeadingZero(Math.floor(((ms % day) % hour) / minute));
   const seconds = addLeadingZero(Math.floor((((ms % day) % hour) % minute) / second));
-
-  /* console.log({ days, hours, minutes, seconds }); */
   return { days, hours, minutes, seconds };
 }
 
@@ -79,10 +78,9 @@ function convertMs(ms) {
         return String(value).padStart(2, "0");
        };
 
-function updateTimer({ days, hours, minutes, seconds }){
-timerVeiw.textContent = `${timerVeiw.dataset.days = days},${timerVeiw.dataset.hours = hours},${timerVeiw.dataset.minutes = minutes},${timerVeiw.dataset.seconds = seconds}`
-console.log(timerVeiw.dataset.hours);
-
-};
- 
- 
+function updateTimer(obj){
+    const values = Object.values(obj);
+    timerVeiw.forEach((item, index) => {
+    item.textContent = values[index];  
+}); 
+}
