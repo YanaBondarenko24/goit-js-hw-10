@@ -8,11 +8,9 @@
 @import url('./reset.css');
 @import url('./base.css');
 @import url('./container.css');
-@import url('./animations.css');
 
-/* Sections style */
-@import url('./header.css');
-@import url('./back-link.css');
+
+
 
 body{
   font-family: "Montserrat", sans-serif;
@@ -22,7 +20,7 @@ body{
   letter-spacing: 0.04em;
   color: #2e2f42;
 }
- input{
+ .timer-input{
   width: 269px;
   height: 40px;
   font-family: inherit;
@@ -32,19 +30,19 @@ body{
   margin: 0 8px 32px 156px;
   padding-left: 8px;
  }
- input:hover{
+ .timer-input:hover{
   border: 1px solid #000;
  }
- input:active{
+ .timer-input:active{
   color: #000;
   border: 1px solid #4e75ff;
  }
- input:disabled{
+ .timer-input:disabled{
   color: #808080;
   background-color: #fafafa;
   border: 1px solid #808080;
  }
- button{
+ .timer-btn{
    width: 75px;
    height: 40px;
   font-family: inherit;
@@ -55,10 +53,10 @@ body{
   border: none;
   padding: 8px 16px;
  }
- button:hover{
+ .timer-btn:hover{
   background-color: #6c8cff;
  }
- button:disabled{
+ .timer-btn:disabled{
   color: #989898;
   background-color: #cfcfcf;
  }
@@ -82,4 +80,19 @@ body{
 .label {
 
 text-transform: uppercase;
+}
+
+.form {
+}
+.form-label {
+}
+.delay-input {
+}
+.radio-btn {
+}
+.fulfilled-input {
+}
+.rejected-input {
+}
+.btn {
 }
