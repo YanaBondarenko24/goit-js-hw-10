@@ -41,7 +41,7 @@ returnPromise(delay, change)
         titleSize: "16px",
         titleLineHeight: "1.5",
         message: ` Rejected promise in ${delay}ms`,
-         messageColor: "#fff",
+        messageColor: "#fff",
         messageSize: "16px",
         messageLineHeight: "1.5",
         backgroundColor: "#ef4040",
