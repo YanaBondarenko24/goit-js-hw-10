@@ -38,13 +38,11 @@ const options = {
     }
 };
 
-const fp = flatpickr(inputTime, options);
+flatpickr(inputTime, options);
 
 
 function startTimer(){
-    /* options.clickOpens = false; */
     inputTime.disabled = true;
-    /* fp.close(); */
     btnStart.disabled = true;
     idTimer = setInterval(() => {
        const currentTime = Date.now();
